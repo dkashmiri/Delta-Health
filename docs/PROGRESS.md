@@ -26,3 +26,12 @@ Newest entry at the bottom. Every session appends one entry before it ends.
 - Round 2: QA PASS (app code) and Security PASS, no high/medium left. Also fixed: test/lint
   packages moved to devDependencies; secure-store chunks never split an emoji. 42/42 tests pass.
   Still open: device run, `supabase test db`, consent contact email + privacy policy (backlog).
+
+## 2026-10-19: Session 1 (continued): Supabase connected
+- Created Supabase project "Delta Health" (`ekxhoqafuflyjtkbnqzj`, Sydney, $0/month) in dkashmiri's Org.
+- Applied `profiles` migration (remote version 20261018181037; local file renamed to match).
+- pgTAP RLS/trigger tests 9/9 pass on the live DB; test users and pgtap removed afterwards.
+  Security advisor: no lints.
+- `mobile/.env` written locally (git-ignored) with URL + publishable key.
+- Next: owner runs the app in Expo Go and signs up; owner sets Auth password policy in the dashboard;
+  product document for M0-2 / M2.

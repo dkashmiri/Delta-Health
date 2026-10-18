@@ -10,7 +10,7 @@ Each item: acceptance criteria as checkboxes. Tick only with evidence.
   - [ ] 12-week roadmap extracted as eval case #1
 - [ ] **M0-3 Accounts and connectors ready** (`blocked (owner)`)
   - [ ] Expo account + EAS project
-  - [ ] Supabase project (Sydney region) + Supabase connector attached
+  - [x] Supabase project `ekxhoqafuflyjtkbnqzj` (ap-southeast-2 Sydney, free tier) + connector attached
   - [ ] Anthropic API key stored in Supabase secrets (never in chat or repo)
 
 ## M1: App skeleton + login  (in review: blocked on device run)
@@ -21,7 +21,7 @@ Each item: acceptance criteria as checkboxes. Tick only with evidence.
 - [x] Consent notice, then 18+ age gate, before any health question; enforced again by DB trigger
       (evidence: `routing.test.tsx`, `gate.test.tsx`)
 - [x] CI: type-check, lint, tests on every push (`.github/workflows/ci.yml`)
-- [ ] Run `supabase test db` for `supabase/tests/database/profiles.test.sql` (written, never run)
+- [x] RLS/trigger pgTAP tests: 9/9 pass against the live project (2026-10-19, run via connector, test data removed)
 
 ### M1 follow-ups (from QA/security review 2026-10-19)
 - [ ] Owner: Supabase Auth settings: min password length 8, leaked-password protection, email confirm on
@@ -51,4 +51,4 @@ Each item: acceptance criteria as checkboxes. Tick only with evidence.
 - [ ] Data export and account deletion work end to end
 - [ ] Security agent full MASVS pass; internal TestFlight / Play internal track build
 - [ ] Contact email in the consent text (next consent version), with the privacy policy
-- [ ] Run `supabase test db` in CI once a Supabase project/CLI is set up
+- [ ] Run `supabase test db` in CI (currently run by hand through the Supabase connector)
