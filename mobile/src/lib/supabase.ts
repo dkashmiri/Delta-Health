@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { AppState } from 'react-native';
+import { AppState, Platform } from 'react-native';
 
 import { chunkedSecureStorage } from '@/lib/secure-storage';
 
@@ -15,7 +15,9 @@ if (!supabaseUrl || !supabaseKey) {
 // The publishable key is public by design; row-level security protects the data.
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: {
-    storage: chunkedSecureStorage,
+    // SecureStore exists only on iOS/Android. On web (a dev preview only) Supabase falls back
+    // to localStorage in the browser, or memory during server rendering.
+    storage: Platform.OS === 'web' ? undefined : chunkedSecureStorage,
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,

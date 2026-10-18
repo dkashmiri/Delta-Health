@@ -35,3 +35,11 @@ Newest entry at the bottom. Every session appends one entry before it ends.
 - `mobile/.env` written locally (git-ignored) with URL + publishable key.
 - Next: owner runs the app in Expo Go and signs up; owner sets Auth password policy in the dashboard;
   product document for M0-2 / M2.
+
+## 2026-10-19: Session 2: first local run
+- Owner upgraded Node 20 -> 24 (SDK 58 needs >= 22.13).
+- Fixed dev-server crash: web/server render called expo-secure-store (native only). Supabase
+  now uses SecureStore only on iOS/Android; web preview uses browser storage. `web.output`
+  changed from `server` to `single` (no server routes needed). 42/42 tests, tsc clean, web
+  bundle loads.
+- Next: owner opens the app on a phone in Expo Go; still waiting on the product document.
