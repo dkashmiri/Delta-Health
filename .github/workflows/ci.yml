@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test -- --ci
+      # Reported, not blocking: today's high advisories are all in Expo/Metro build tooling that
+      # is not shipped in the app bundle (security review 2026-10-19). Revisit each SDK upgrade.
+      - name: Audit production dependencies (high and above)
+        run: npm audit --omit=dev --audit-level=high
+        continue-on-error: true

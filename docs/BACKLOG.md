@@ -13,11 +13,22 @@ Each item: acceptance criteria as checkboxes. Tick only with evidence.
   - [ ] Supabase project (Sydney region) + Supabase connector attached
   - [ ] Anthropic API key stored in Supabase secrets (never in chat or repo)
 
-## M1: App skeleton + login  (todo)
-- [ ] Expo app (TS strict, Expo Router) runs on Android and iOS
-- [ ] Email sign-in with Supabase Auth; session in secure store
-- [ ] 18+ age gate and consent screen before any health question
-- [ ] CI: type-check, lint, tests on every push (GitHub Actions)
+## M1: App skeleton + login  (in review: blocked on device run)
+- [ ] Expo app (TS strict, Expo Router) runs on Android and iOS. Code builds, type-checks and
+      passes 42 unit/route tests; NOT yet run on a device (needs Supabase project + Expo Go)
+- [x] Email sign-in with Supabase Auth; session in chunked expo-secure-store
+      (evidence: `sign-in.test.tsx`, `secure-storage.test.ts`; not yet against a live backend)
+- [x] Consent notice, then 18+ age gate, before any health question; enforced again by DB trigger
+      (evidence: `routing.test.tsx`, `gate.test.tsx`)
+- [x] CI: type-check, lint, tests on every push (`.github/workflows/ci.yml`)
+- [ ] Run `supabase test db` for `supabase/tests/database/profiles.test.sql` (written, never run)
+
+### M1 follow-ups (from QA/security review 2026-10-19)
+- [ ] Owner: Supabase Auth settings: min password length 8, leaked-password protection, email confirm on
+- [ ] Privacy policy page + link from consent screen (before any non-owner user)
+- [ ] Pin GitHub Actions to commit SHAs
+- [ ] Keep the navigator mounted during user switch (QA F4, low)
+- [ ] Remember an under-18 block across restarts (QA F8, info; server already rejects)
 
 ## M2: Onboarding questionnaire  (todo)
 - [ ] Stories and questions approved by owner (product-ux)
@@ -39,3 +50,5 @@ Each item: acceptance criteria as checkboxes. Tick only with evidence.
 - [ ] Weight, adherence and training charts
 - [ ] Data export and account deletion work end to end
 - [ ] Security agent full MASVS pass; internal TestFlight / Play internal track build
+- [ ] Contact email in the consent text (next consent version), with the privacy policy
+- [ ] Run `supabase test db` in CI once a Supabase project/CLI is set up
