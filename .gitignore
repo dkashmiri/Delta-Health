@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# expo / build
+.expo/
+dist/
+web-build/
+android/
+ios/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.keystore
+
+# secrets
+.env
+.env.*
+!.env.example
+supabase/.temp/
+supabase/.branches/
+
+# misc
+.DS_Store
+*.log
+coverage/
+.claude/settings.local.json
